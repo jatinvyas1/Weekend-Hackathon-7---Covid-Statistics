@@ -11,7 +11,7 @@ const { connection } = require('./connector')
 app.get("/totalRecovered",(req,res)=>{
     connection.aggregate([{$group: {_id:"total", recovered: {$sum:"$recovered"} } }]).then(result=>{
         console.log(typeof result)
-        res.send({data:result});
+        res.send({"data":result[0]});
     })
 })
 
